@@ -21,7 +21,7 @@ class SwapTabWrapper extends React.Component {
       disabled: false,
       error: false,
       inputError: false,
-      base: 'LTC',
+      base: 'BTC',
       quote: 'BTC ⚡',
       minAmount: new BigNumber('0'),
       maxAmount: new BigNumber('0'),
