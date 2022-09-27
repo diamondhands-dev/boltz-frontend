@@ -37,18 +37,18 @@ const DeskTopNavigationBar = ({ classes }) => (
         text="FAQ"
         onPress={() => navigation.navFaq()}
       />
-      <Button
+      {/* <Button
         className={classes.responsiveBtn}
         external
         text="Onion URL"
         to={boltzOnion}
-      />
-      <Button
+      /> */}
+      {/* <Button
         className={classes.responsiveBtn}
         external
         text="Twitter"
         to="https://twitter.com/boltzhq"
-      />
+      /> */}
       <Button
         className={classes.responsiveBtn}
         external

@@ -60,18 +60,18 @@ class MobileNavigationBar extends React.Component {
               text="FAQ"
               onPress={() => navigation.navFaq()}
             />
-            <Button
+            {/* <Button
               className={classes.btn}
               external
               text="Onion URL"
               to={boltzOnion}
-            />
-            <Button
+            /> */}
+            {/* <Button
               className={classes.btn}
               external
               text="Twitter"
               to="https://twitter.com/boltzhq"
-            />
+            /> */}
             <Button
               className={classes.responsiveBtn}
               external
