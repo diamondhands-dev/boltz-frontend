@@ -31,13 +31,6 @@ const MobileLandingPageContent = ({
     <BackGround>
       <ReactNotification ref={notificationDom} />
       <MobileNavigationBar />
-      <View className={classes.intro}>
-        <p className={classes.introText}>
-          Instant, Account-Free <br />
-          & <br />
-          Non-Custodial
-        </p>
-      </View>
       {loading ? (
         <span>LOADING</span>
       ) : (

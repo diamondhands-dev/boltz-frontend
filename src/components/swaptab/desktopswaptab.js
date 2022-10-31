@@ -104,6 +104,7 @@ const DeskTopSwapTabContent = ({
 
 const styles = theme => ({
   wrapper: {
+    borderRadius: '15px',
     margin: '15px',
     height: '400px',
     width: '600px',
@@ -125,7 +126,7 @@ const styles = theme => ({
     },
   },
   stats: {
-    backgroundColor: theme.colors.white,
+    //backgroundColor: theme.colors.white,
     height: '15%',
     width: '100%',
     justifyContent: 'space-around',
