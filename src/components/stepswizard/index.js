@@ -32,7 +32,7 @@ const styles = theme => ({
   controls: {
     width: '100%',
     height: '15%',
-    backgroundColor: theme.colors.matisseBlue,
+    backgroundColor: theme.colors.selectiveYellow,
     '&:hover': {
       cursor: 'pointer',
     },
