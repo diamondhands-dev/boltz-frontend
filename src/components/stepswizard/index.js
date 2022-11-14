@@ -27,7 +27,7 @@ const styles = theme => ({
   },
   content: {
     width: '100%',
-    height: '75%',
+    height: '95%',
   },
   controls: {
     width: '100%',
