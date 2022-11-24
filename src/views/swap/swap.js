@@ -116,7 +116,8 @@ class Swap extends Component {
                     notifie={style => (
                       <span className={style}>
                         You sent {swapInfo.baseAmount} {swapInfo.base} and
-                        received {swapInfo.quoteAmount} {swapInfo.quote}
+                        received {swapInfo.quoteAmount} {swapInfo.quote}. <br/>
+                        You paid {(swapInfo.baseAmount - swapInfo.quoteAmount).toFixed(8)} {swapInfo.base} for swap fee.
                       </span>
                     )}
                   />

@@ -28,6 +28,8 @@ class SwapTabWrapper extends React.Component {
       baseAmount: new BigNumber('0.05'),
       quoteAmount: new BigNumber('0'),
       feeAmount: new BigNumber('0'),
+      minerFeeAmount: new BigNumber('0'),
+      serviceFeeAmount: new BigNumber('0'),
       errorMessage: '',
     };
   }
@@ -235,10 +237,14 @@ class SwapTabWrapper extends React.Component {
     const newBaseWithFee = fee.plus(newBase);
     const inputError = !this.checkBaseAmount(newBaseWithFee);
 
+    const minerFee = new BigNumber(this.calculateMinerFee()).dividedBy(decimals);
+
     this.setState({
       quoteAmount: amount,
       baseAmount: new BigNumber(newBaseWithFee.toFixed(8)),
       feeAmount: fee,
+      minerFeeAmount: minerFee,
+      serviceFeeAmount: amount.times(this.state.feePercentage),
       inputError,
       errorMessage: 'Invalid amount',
     });
@@ -263,11 +269,15 @@ class SwapTabWrapper extends React.Component {
       newQuote = new BigNumber('0');
     }
 
+    const minerFee = new BigNumber(this.calculateMinerFee()).dividedBy(decimals);
+
     const inputError = !this.checkBaseAmount(amount);
     this.setState({
       quoteAmount: newQuote,
       baseAmount: amount,
       feeAmount: fee,
+      minerFeeAmount: minerFee,
+      serviceFeeAmount: amount.times(this.state.feePercentage),
       inputError,
       errorMessage: 'Invalid amount',
     });
@@ -315,11 +325,17 @@ class SwapTabWrapper extends React.Component {
   };
 
   render() {
-    const { feeAmount } = this.state;
+    const { feeAmount, minerFeeAmount, serviceFeeAmount } = this.state;
     const feePercentage = this.props.fees.percentages[this.getSymbol()] * 100;
+
+    // TODO: avoid hard coding transaction size
+    const { minerFees } = this.props.fees;
+    const fee = minerFees[this.baseAsset.symbol].normal;
+    const feerate = new BigNumber(fee).dividedBy(170).toFixed(0);
 
     return this.props.children({
       feePercentage,
+      feerate,
       quote: this.state.quote,
       disabled: this.state.disabled,
       base: this.state.base,
@@ -329,6 +345,8 @@ class SwapTabWrapper extends React.Component {
       minAmount: this.state.minAmount.toNumber(),
       maxAmount: this.state.maxAmount.toNumber(),
       feeAmount: feeAmount.isZero() ? 0 : feeAmount.toFixed(8),
+      minerFeeAmount: minerFeeAmount.isZero() ? 0 : minerFeeAmount.toFixed(8),
+      serviceFeeAmount: serviceFeeAmount.isZero() ? 0 : serviceFeeAmount.toFixed(8),
       quoteAmount: this.state.quoteAmount.toNumber(),
       baseAmount: this.state.baseAmount.toNumber(),
       classes: this.props.classes,

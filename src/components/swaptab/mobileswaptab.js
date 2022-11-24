@@ -13,6 +13,9 @@ import SwapTabWrapper from './swaptabwrapper';
 const MobileSwapTabContent = ({
   classes,
   feeAmount,
+  minerFeeAmount,
+  serviceFeeAmount,
+  feerate,
   minAmount,
   maxAmount,
   rate,
@@ -47,7 +50,7 @@ const MobileSwapTabContent = ({
       <InfoText
         title="Current fee"
         text={`${feeAmount} ${base}`}
-        lineTwo={`(${feePercentage}%)`}
+        lineTwo={`${minerFeeAmount} ${base} on-chain fee (${feerate} sat/vBytes)\n${serviceFeeAmount} ${base} service fee (${feePercentage}%)`}
       />
       <InfoText title="Rate" text={`${rate}`} />
     </View>
@@ -176,6 +179,9 @@ MobileSwapTabContent.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   feeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  minerFeeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  serviceFeeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  feerate: PropTypes.string,
   minAmount: PropTypes.number,
   maxAmount: PropTypes.number,
   inputError: PropTypes.bool,

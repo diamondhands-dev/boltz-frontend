@@ -13,6 +13,9 @@ import { formatAmount } from '../../utils';
 const DeskTopSwapTabContent = ({
   classes,
   feeAmount,
+  minerFeeAmount,
+  serviceFeeAmount,
+  feerate,
   minAmount,
   maxAmount,
   inputError,
@@ -46,7 +49,8 @@ const DeskTopSwapTabContent = ({
       />
       <InfoText
         title="Current fee"
-        text={`${feeAmount} ${base} (${feePercentage}%)`}
+        text={`${feeAmount} ${base}`}
+        lineTwo={`${minerFeeAmount} ${base} on-chain fee (${feerate} sat/vBytes)\n${serviceFeeAmount} ${base} service fee (${feePercentage}%)`}
       />
       <InfoText title="Rate" text={`${rate}`} />
     </View>
@@ -130,7 +134,7 @@ const styles = theme => ({
     height: '15%',
     width: '100%',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    //alignItems: 'center',
   },
   options: {
     flex: '1 0 70%',
@@ -198,6 +202,9 @@ DeskTopSwapTabContent.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   feeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  minerFeeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  serviceFeeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  feerate: PropTypes.string,
   minAmount: PropTypes.number,
   maxAmount: PropTypes.number,
   inputError: PropTypes.bool,
