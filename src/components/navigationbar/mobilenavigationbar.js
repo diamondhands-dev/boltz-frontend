@@ -76,13 +76,13 @@ class MobileNavigationBar extends React.Component {
               className={classes.responsiveBtn}
               external
               text="API"
-              to="https://docs.boltz.exchange/en/latest/"
+              to="https://boltz-backend-diamondhands.readthedocs.io/en/latest/"
             />
             <Button
               className={classes.btn}
               external
               text="Github"
-              to="https://github.com/BoltzExchange"
+              to="https://github.com/diamondhands-dev"
             />
           </View>
         ) : (

@@ -45,7 +45,7 @@ const styles = theme => ({
   },
 });
 
-const twitterLink = 'https://twitter.com/boltzhq';
+const twitterLink = 'https://twitter.com/DiamondHandsLN';
 
 class Faq extends React.Component {
   render() {
@@ -108,7 +108,7 @@ class Faq extends React.Component {
                   source code and verify that the claims above are valid because
                   everything is open source and can be found on{' '}
                   <Link
-                    to={'https://github.com/boltzexchange'}
+                    to={'https://github.com/diamondhands-dev'}
                     text={'our GitHub'}
                   />
                   . Also we will soon add a version of our frontend that you can
@@ -146,12 +146,6 @@ class Faq extends React.Component {
                     size={150}
                     uri={bitcoinLnd}
                     onionUri={bitcoinLndOnion}
-                  />
-                  <NodeInfo
-                    name={'LTC LND node'}
-                    size={150}
-                    uri={litecoinLnd}
-                    onionUri={litecoinLndOnion}
                   />
                 </p>
               )}
