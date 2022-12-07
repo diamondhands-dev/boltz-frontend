@@ -86,7 +86,7 @@ const LandingPageDeskTopContent = ({
 const styles = theme => ({
   wrapper: {
     flex: '1 0 100%',
-    alignItems: 'center',
+    //alignItems: 'center',
     justifyContent: 'space-around',
   },
   infoWrapper: {
