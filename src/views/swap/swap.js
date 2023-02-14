@@ -66,6 +66,7 @@ class Swap extends Component {
       swapInfo,
       swapResponse,
       swapStatus,
+      backup,
     } = this.props;
     return (
       <BackGround>
@@ -97,6 +98,7 @@ class Swap extends Component {
                     redeemScript={swapResponse.redeemScript}
                     privateKey={swapInfo.keys.privateKey}
                     timeoutBlockHeight={swapResponse.timeoutBlockHeight}
+                    onChange={backup}
                   />
                 )}
               />
@@ -145,7 +147,13 @@ class Swap extends Component {
                 render={props => (
                   <Controls
                     mobile
+                    loading={!this.props.backupSwap}
                     text={'I have downloaded the refund file'}
+                    loadingText={
+                      this.props.backupSwap
+                        ? 'Executing swap...'
+                        : 'Backup needed'
+                    }
                     onPress={props.nextStage}
                   />
                 )}
@@ -191,6 +199,8 @@ Swap.propTypes = {
   retrySwap: PropTypes.bool,
   nextStage: PropTypes.func,
   startSwap: PropTypes.func.isRequired,
+  backupSwap: PropTypes.bool,
+  backup: PropTypes.func,
   swapStatus: PropTypes.string.isRequired,
   inSwapMode: PropTypes.bool,
 };

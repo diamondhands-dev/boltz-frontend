@@ -25,3 +25,18 @@ export const createRefundQr = (
 
   return qr.toDataURL();
 };
+
+export const createRefundText = (
+  currency,
+  privateKey,
+  redeemScript,
+  timeoutBlockHeight
+) => {
+  const jsonData = JSON.stringify({
+    currency,
+    privateKey,
+    redeemScript,
+    timeoutBlockHeight,
+  });
+  return jsonData;
+};
