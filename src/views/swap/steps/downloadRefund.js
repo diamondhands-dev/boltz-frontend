@@ -18,7 +18,7 @@ const DownloadRefundStyles = () => ({
     flexDirection: 'column',
   },
   info: {
-    fontSize: '30px',
+    fontSize: '20px',
     alignSelf: 'flex-start',
     '@media (max-width: 425px)': {
       fontSize: '16px',
@@ -54,6 +54,9 @@ const DownloadRefundStyles = () => ({
   },
   hidden: {
     visibility: 'hidden'
+  },
+  warning: {
+    color: 'red'
   }
 });
 
@@ -126,14 +129,15 @@ class StyledDownloadRefund extends React.Component {
             >
               Click here
             </a>{' '}
-            if the download of &lsquo;refund.png&lsquo; <br /> didn&apos;t start
-            automatically.
+            if the download of &lsquo;refund.png&lsquo; didn&apos;t start automatically.
           </p>
           <p className={classes.address}>
             This refund file can be used to trustlessly 
-            claim your coins back in case of failure of this 
-            swap. It is recommended to not delete this 
-            file until after the completion of this swap.
+            claim your coins back in case of failure of this swap. <br />
+            <span className={classes.warning}>
+              In adittion to the png file, make sure to keep this backup code below until the swap is succesfully complete. <br />
+              Warning: FAILURE TO DO SO MAY LEAD TO LOSS OF FUNDS.
+            </span>
           </p>
           <label>
             <input
