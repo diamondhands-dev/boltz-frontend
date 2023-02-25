@@ -27,12 +27,12 @@ const styles = theme => ({
   },
   content: {
     width: '100%',
-    height: '75%',
+    height: '95%',
   },
   controls: {
     width: '100%',
     height: '15%',
-    backgroundColor: theme.colors.matisseBlue,
+    backgroundColor: theme.colors.selectiveYellow,
     '&:hover': {
       cursor: 'pointer',
     },

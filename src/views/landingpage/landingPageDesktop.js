@@ -37,23 +37,6 @@ const LandingPageDeskTopContent = ({
       <ReactNotification ref={notificationDom} />
       <NavigationBar />
       <View className={classes.wrapper}>
-        <View className={classes.infoWrapper}>
-          <p className={classes.title}>
-            Instant, Account-Free & <br /> Non-Custodial.
-          </p>
-          <p className={classes.description}>
-            Trading <br />
-            <b>{`Shouldn't`}</b>
-            <br />
-            Require
-            <br />
-            An Account.
-          </p>
-          <Button text="WHY?" onPress={() => toggleModal()} />
-          <ModalComponent isOpen={isOpen} onClose={toggleModal}>
-            <ModalContent />
-          </ModalComponent>
-        </View>
         {loading ? (
           <View className={classes.loading}>
             <img alt="logo" src={boltz_logo} className={classes.loadingLogo} />
@@ -103,7 +86,7 @@ const LandingPageDeskTopContent = ({
 const styles = theme => ({
   wrapper: {
     flex: '1 0 100%',
-    alignItems: 'center',
+    //alignItems: 'center',
     justifyContent: 'space-around',
   },
   infoWrapper: {

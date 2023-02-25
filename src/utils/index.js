@@ -92,7 +92,18 @@ export const copyToClipBoard = () => {
   window.getSelection().removeAllRanges();
   window.getSelection().addRange(range);
 
-  document.execCommand('copy');
+  if (!navigator.clipboard){
+    document.execCommand('copy');
+  } else {
+    navigator.clipboard.writeText(range).then(
+      function(){
+        //console.log('success');
+      })
+    .catch(
+      function() {
+        alert('error');
+    });
+  }
 };
 
 /**

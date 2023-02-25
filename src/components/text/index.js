@@ -34,6 +34,12 @@ const infoTextStyles = () => ({
     fontSize: '12px',
     fontWeight: 400,
   },
+  textTwo: {
+    color: 'grey',
+    fontSize: '12px',
+    fontWeight: 400,
+    whiteSpace: 'pre-wrap'
+  },
 });
 
 const StyledInfoText = ({ title, text, lineTwo, classes, style }) => (
@@ -41,7 +47,7 @@ const StyledInfoText = ({ title, text, lineTwo, classes, style }) => (
     <Text text={`${title}:`} className={classes.title} style={style} />
     <Text text={text} className={classes.text} style={style} />
     {lineTwo !== undefined ? (
-      <Text text={lineTwo} className={classes.text} style={style} />
+      <Text text={lineTwo} className={classes.textTwo} style={style} />
     ) : (
       undefined
     )}

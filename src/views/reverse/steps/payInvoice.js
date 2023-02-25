@@ -25,7 +25,7 @@ const styles = () => ({
     justifyContent: 'space-around',
   },
   invoice: {
-    fontSize: '20px',
+    fontSize: '15px',
     color: 'grey',
     wordBreak: 'break-word',
     paddingLeft: '15px',

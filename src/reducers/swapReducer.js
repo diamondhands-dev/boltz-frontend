@@ -21,6 +21,7 @@ export const initialState = {
     pending: false,
     message: 'Waiting for one confirmation...',
   },
+  backup: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -73,6 +74,11 @@ const reducer = (state = initialState, action) => {
         },
       };
 
+    case actionTypes.BACKUP:
+      return {
+        ...state,
+        backup: action.payload,
+      };
     case actionTypes.SET_SWAP_STATUS:
       return {
         ...state,

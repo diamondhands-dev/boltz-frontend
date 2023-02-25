@@ -3,6 +3,7 @@ import {
   startSwap,
   completeSwap,
   setSwapInvoice,
+  backup,
 } from '../../actions/swapActions';
 import Swap from './swap';
 
@@ -13,10 +14,12 @@ const mapStateToProps = state => ({
   retrySwap: state.swapReducer.retry,
   swapStatus: state.swapReducer.swapStatus,
   inSwapMode: state.swapReducer.inSwapMode,
+  backupSwap: state.swapReducer.backup,
 });
 
 const mapDispatchToProps = dispatch => ({
   setSwapInvoice: (invoice, error) => dispatch(setSwapInvoice(invoice, error)),
+  backup: (error) => dispatch(backup(error)),
   completeSwap: () => dispatch(completeSwap()),
   startSwap: (info, cb) => dispatch(startSwap(info, cb)),
 });

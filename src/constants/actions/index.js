@@ -12,6 +12,7 @@ export const RESOURCE_ERROR = 'RESOURCE_ERROR';
 export const COMPLETE_SWAP = 'COMPLETE_SWAP';
 export const INIT_SWAP = 'INIT_SWAP';
 export const SET_SWAP_INVOICE = 'SET_SWAP_INVOICE';
+export const BACKUP = 'BACKUP';
 export const SET_SWAP_STATUS = 'SET_SWAP_STATUS';
 export const SWAP_REQUEST = 'SWAP_REQUEST';
 export const SWAP_RESPONSE = 'SWAP_RESPONSE';

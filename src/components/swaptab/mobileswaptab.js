@@ -13,6 +13,9 @@ import SwapTabWrapper from './swaptabwrapper';
 const MobileSwapTabContent = ({
   classes,
   feeAmount,
+  minerFeeAmount,
+  serviceFeeAmount,
+  feerate,
   minAmount,
   maxAmount,
   rate,
@@ -46,8 +49,8 @@ const MobileSwapTabContent = ({
       />
       <InfoText
         title="Current fee"
-        text={`${feeAmount} ${base}`}
-        lineTwo={`(${feePercentage}%)`}
+        text={`${feeAmount} ${base} total fee (${(feeAmount / baseAmount * 100).toFixed(2)}%) *`}
+        lineTwo={`${minerFeeAmount} ${base} on-chain fee (${feerate} sat/vBytes)\n${serviceFeeAmount} ${base} service fee (${feePercentage.toFixed(2)}%)`}
       />
       <InfoText title="Rate" text={`${rate}`} />
     </View>
@@ -95,6 +98,9 @@ const MobileSwapTabContent = ({
           />
         </View>
       </View>
+      <View className={classes.reward}>
+        <Text text={`${(base.lastIndexOf('⚡') !== -1) ? ' ' : ('+ ' + (baseAmount * 0.006).toFixed(8) + ' BTC ⚡ swapin reward (0.6%) **')}`} />
+      </View>
     </View>
     <View className={classes.next}>
       <Controls
@@ -104,6 +110,10 @@ const MobileSwapTabContent = ({
         onPress={error ? () => {} : shouldSubmit}
         errorText={errorMessage}
       />
+    </View>
+    <View className={classes.terms}>
+      <Text text="* In addition to the total fee, routing fee or miner fee will be charged when you swap in or swap out respectively." />
+      <Text text="** Swap in, provide the DH node with onchain liquidity and earn sats. Note: Rewards distributed via keysend. Only available for non-custodial nodes such as Umbrel." />
     </View>
   </View>
 );
@@ -147,7 +157,7 @@ const styles = theme => ({
     justifyContent: 'space-around',
   },
   next: {
-    backgroundColor: theme.colors.matisseBlue,
+    backgroundColor: theme.colors.selectiveYellow,
   },
   arrows: {
     height: '30px',
@@ -161,6 +171,22 @@ const styles = theme => ({
     '&:hover': {
       color: theme.colors.hoverGrey,
     },
+  },
+  terms: {
+    color: 'grey',
+    fontSize: '12px',
+    fontWeight: 400,
+    padding: '10px',
+    display: 'flex',
+    flexFlow: 'column',
+    backgroundColor: theme.colors.white,
+  },
+  reward: {
+    fontSize: '15px',
+    fontWeight: 400,
+    padding: '0 0 15px 0',
+    margin: 'auto',
+    whiteSpace: 'pre-wrap',
   },
 });
 
@@ -176,6 +202,9 @@ MobileSwapTabContent.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   feeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  minerFeeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  serviceFeeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  feerate: PropTypes.string,
   minAmount: PropTypes.number,
   maxAmount: PropTypes.number,
   inputError: PropTypes.bool,

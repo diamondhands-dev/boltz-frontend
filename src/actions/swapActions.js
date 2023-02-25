@@ -30,6 +30,11 @@ export const setSwapInvoice = (invoice, error) => ({
   },
 });
 
+export const backup = (error) => ({
+  type: actionTypes.BACKUP,
+  payload: error,
+});
+
 export const setSwapStatus = status => ({
   type: actionTypes.SET_SWAP_STATUS,
   payload: status,

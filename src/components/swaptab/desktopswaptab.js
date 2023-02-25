@@ -13,6 +13,9 @@ import { formatAmount } from '../../utils';
 const DeskTopSwapTabContent = ({
   classes,
   feeAmount,
+  minerFeeAmount,
+  serviceFeeAmount,
+  feerate,
   minAmount,
   maxAmount,
   inputError,
@@ -46,7 +49,8 @@ const DeskTopSwapTabContent = ({
       />
       <InfoText
         title="Current fee"
-        text={`${feeAmount} ${base} (${feePercentage}%)`}
+        text={`${feeAmount} ${base} total fee (${(feeAmount / baseAmount * 100).toFixed(2)}%) *`}
+        lineTwo={`${minerFeeAmount} ${base} on-chain fee (${feerate} sat/vBytes)\n${serviceFeeAmount} ${base} service fee (${feePercentage.toFixed(2)}%)`}
       />
       <InfoText title="Rate" text={`${rate}`} />
     </View>
@@ -90,6 +94,9 @@ const DeskTopSwapTabContent = ({
           onChange={e => updatePair(e, base)}
         />
       </View>
+      <View className={classes.reward}>
+        <Text text={`${(base.lastIndexOf('⚡') !== -1) ? ' ' : ('+ ' + (baseAmount * 0.006).toFixed(8) + ' BTC ⚡ swapin reward (0.6%) **')}`} />
+      </View>
     </View>
     <View className={classes.next}>
       <Controls
@@ -99,11 +106,16 @@ const DeskTopSwapTabContent = ({
         errorText={errorMessage}
       />
     </View>
+    <View className={classes.terms}>
+      <Text text="* In addition to the total fee, routing fee or miner fee will be charged when you swap in or swap out respectively." />
+      <Text text="** Swap in, provide the DH node with onchain liquidity and earn sats. Note: Rewards distributed via keysend. Only available for non-custodial nodes such as Umbrel." />
+    </View>
   </View>
 );
 
 const styles = theme => ({
   wrapper: {
+    borderRadius: '15px 15px 0 0',
     margin: '15px',
     height: '400px',
     width: '600px',
@@ -125,11 +137,11 @@ const styles = theme => ({
     },
   },
   stats: {
-    backgroundColor: theme.colors.white,
+    //backgroundColor: theme.colors.white,
     height: '15%',
     width: '100%',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    //alignItems: 'center',
   },
   options: {
     flex: '1 0 70%',
@@ -141,7 +153,7 @@ const styles = theme => ({
     justifyContent: 'space-around',
   },
   next: {
-    backgroundColor: theme.colors.matisseBlue,
+    backgroundColor: theme.colors.selectiveYellow,
     flex: '1 0 15%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -184,6 +196,23 @@ const styles = theme => ({
       color: theme.colors.hoverGrey,
     },
   },
+  terms: {
+    borderRadius: '0 0 15px 15px',
+    color: 'grey',
+    fontSize: '12px',
+    fontWeight: 400,
+    padding: '10px',
+    display: 'flex',
+    flexFlow: 'column',
+    backgroundColor: theme.colors.white,
+  },
+  reward: {
+    fontSize: '15px',
+    fontWeight: 400,
+    padding: '0 0 15px 0',
+    margin: 'auto',
+    whiteSpace: 'pre-wrap',
+  },
 });
 
 DeskTopSwapTabContent.propTypes = {
@@ -197,6 +226,9 @@ DeskTopSwapTabContent.propTypes = {
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   feeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  minerFeeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  serviceFeeAmount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  feerate: PropTypes.string,
   minAmount: PropTypes.number,
   maxAmount: PropTypes.number,
   inputError: PropTypes.bool,
